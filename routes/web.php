@@ -12,9 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'word'],function (){
+
+    Route::get('/',"WordController@index")->name('word');
+    Route::get('create',"WordController@create")->name('word.create');
+    Route::post('save',"WordController@save")->name('word.save');
+});
